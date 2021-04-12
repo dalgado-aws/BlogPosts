@@ -54,18 +54,18 @@ through "Usage Search" results.
 Alt + Backspace to undo anything 
  
 ### Ctrl Key Combination Shortcuts in JetBrains
- Key|Action|Notes
- ---|---|---
-             *d| duplicate line | yy and p in Vim
-             *h| show hierarchy
-              i| implement  methods| similar to Ctrl + O
-             *j| show available "live templates". see below for live templates 
-              k| commit
-              l| go to next match after Ctrl + f
-              o| override | similar to Ctrl + i. In Vim, Ctrl + o, takes me to the last edit location
-              y| yank/cut current line | dd in vim
-          Ctrl | Run current file
-      Backspace| delete last word behind cursor    
+Key|Action|Notes
+---|---|---
+d| duplicate line | yy and p in Vim
+h| show hierarchy
+i| implement  methods| similar to Ctrl + O
+j| show available "live templates". see below for live templates 
+k| commit
+l| go to next match after Ctrl + f
+o| override | similar to Ctrl + i. In Vim, Ctrl + o, takes me to the last edit location
+y| yank/cut current line | dd in vim
+Ctrl | Run current file
+Backspace| delete last word behind cursor    
    
 ### Navigation
 Key | Action
@@ -118,7 +118,7 @@ Ctrl + w | incremental selection
 Ctrl + [ or ]                     | Move cursor to start/end of code block. Ctrl + Shift + [ to Select
 Ctrl + Shift + [ | select till code block start. also incremental
 Ctrl + Shift + ] | select till code block end. also incremental
--                                 | to select code block, move to start of code block with Ctrl + [, then select till end with Ctrl + Shift + \]
+Code Block Selection  | to select code block, move to start of code block with Ctrl + [, then select till end with Ctrl + Shift + \]
 
 #### What to do with the Selection
 Key | Effect on Selection | Notes 
@@ -146,13 +146,10 @@ When writing a new function (see below example), first write the component funct
 The IDE will complain that the functions (like `insert_into_db`, `email_users`, and `cleanup`) are not defined.
 Use `f2` to jump to the first error, and type Alt + Enter, and Intellij 
 
-The editor will show errors.
-
-Visit the first error by pressing f2, then press Alt + / for recommendations to resolve error
-Select one of the recommendations to resolve error
 ![create new method](img/create_new_methods_with_Alt_Slash.png)
 
 Similarly, to create new variable, type in the variable value and then press Alt + Enter
+
 ![create new variable](img/create_new_local_variable_with_Alt_Slash.png)
 
 ![create new variable](img/create_new_local_variable_with_Alt_Slash_2.png)
