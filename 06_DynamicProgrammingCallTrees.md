@@ -53,7 +53,7 @@ Implement a method to count how many possible ways the child can run up the stai
 ```
 Let us look at the call tree to analyse the solution:
 
-![Triple Steps](img/dynamic_programming/01_steps.png)
+![Triple Steps](https://github.com/dalgado-aws/BlogPosts/blob/master/https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/01_steps.png)
 
 We start with having to climb 5 steps.
 
@@ -177,7 +177,7 @@ of ways of representing $n dollars.
 
 As in the last problem, we have choices to make at each node:
 
-![Change](img/dynamic_programming/02_change.png)
+![Change](https://github.com/dalgado-aws/BlogPosts/blob/master/https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/02_change.png)
 
 Starting from the top node, there are multiple paths that can be taken:
    - Use 1 of $1 and then find change for 10-1 using `[$2, $3]`
@@ -245,7 +245,7 @@ In this case the first choice requires us to decide what character to place at p
 - Place "b" at position 0 and fill out rest of the positions with `[a,c]`
 - Place "c" at position 0 and fill out rest of the positions with `[a,b]`
 
-![Change](img/dynamic_programming/03_permutations.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/03_permutations.png)
 
 If we place  "a" at position 0, then we have `[b, c]` to fill positions 2 and 3.
 After placing "a" at position "0", we again will have to decide what to do at position 1.
@@ -313,7 +313,7 @@ When we select the first option, we have have another choice to make.
 Where to place the queen in row 2.
 Again we have 4 choices
 
-![Change](img/dynamic_programming/04_nqueens.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/04_nqueens.png)
 At every node, we have to decide if the choice is viable.
 for e.g., we decided to place first queen at `row0, col0`, then at the next node we 
 have to choose position for queen at row2.
@@ -341,7 +341,7 @@ def n_queens(n, partial_solution, all_solutions):
 ```
 
 
-![Change](img/dynamic_programming/04_nqueens.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/04_nqueens.png)
 
 #### 5. Power Set
 ```
@@ -356,7 +356,7 @@ the Power Set of `b,c,d`. Then we build 2 sets from the Power Set of `b,c,a`
 
 The combination of these 2 sets gives us the Power Set of `a,b,c,d`
 
-![Change](img/dynamic_programming/05_powerset.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/05_powerset.png)
 
 
 [Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#05_powerset.py)
@@ -418,7 +418,7 @@ if we reach the destination, then we return an array within an array that will b
 nodes as the stack is unwound.
 
 
-![Change](img/dynamic_programming/06_robot.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/06_robot.png)
 
 [Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#06_robot.py)
 
