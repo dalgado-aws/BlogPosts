@@ -53,7 +53,7 @@ Implement a method to count how many possible ways the child can run up the stai
 ```
 Let us look at the call tree to analyse the solution:
 
-![Triple Steps](https://github.com/dalgado-aws/BlogPosts/blob/master/https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/01_steps.png)
+![Triple Steps](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/01_steps.png)
 
 We start with having to climb 5 steps.
 
@@ -177,7 +177,7 @@ of ways of representing $n dollars.
 
 As in the last problem, we have choices to make at each node:
 
-![Change](https://github.com/dalgado-aws/BlogPosts/blob/master/https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/02_change.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/02_change.png)
 
 Starting from the top node, there are multiple paths that can be taken:
    - Use 1 of $1 and then find change for 10-1 using `[$2, $3]`
