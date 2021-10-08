@@ -2,41 +2,49 @@
 
 #### What is Dynamic Programming?
 Dynamic Programming is a fascinating set of algorithm design techniques. It involves breaking down a problem
-into sub problems and then combining the solutions of the sub problems to compose the solution 
+into sub problems and then combining the `sub solutions` to compose the solution 
 to the original problem. 
 
-Each of the sub-problems is further divided into `sub-sub-problems`. 
-
+Each of the `sub problems` is further divided into `sub-sub-problems`. 
 This repeating nature of dynamic programming naturally lends itself to coding with recursion.
 
-Dynamic programming is confusing to many people. And it is very rarely used in out day to day jobs as Programmers.
+Dynamic Programming can be confusing to many people. One of the reason for that is we very rarely used 
+in out day to day jobs as Programmers.
 In our daily jobs, we mostly do `Imperative Programming`, 
-i.e. we specify a set instructions to achieve a objective whether it is to insert 
-records in a db or fetch and consume data from a rest api.
+i.e. we specify a set instructions to achieve a objective. More often than not it involves managing
+records in some kind of a data store.
 
-Dynamic Programming with recursion can help us get a better understanding of Combinatorial Programming.
-A certain set of problems involves choosing an optional solutions from an enormous set of possible solutions.
+Dynamic Programming on the other hand can help us get a better understanding of `Combinatorial Programming`.
+A certain set of problems involves choosing an optimal solution from an enormous set of possible solutions.
+The straight-forward approach to these problems would be to enumerate all the possible permutations/combinations. 
+Then evaluate each of these permutations/combinations to filter the appropriate ones. 
 
-The straight forward solution to these problems would be to enumerate all the possible combinations. 
-Then evaluate each of these combinations to filter the appropriate ones. 
+For e.g., in the 4-Queen's problem, we can generate all possible solutions with nested for loops:
 
-How can we generate all the possible combinations programmatically? Can we make the process efficient by deciding not to generate
+```python
+for queen_1_position_in_row_1 in range(4);
+  for queen_2_position_in_row_2 in range(4);
+    for queen_3_position_in_row_3 in range(4);
+      for queen_4_position_in_row_4 in range(4);
+        is_valid(queen_1_position_in_row_1, queen_2_position_in_row_2, queen_3_position_in_row_3, queen_4_position_in_row_4)
+
+```
+
+Two things come to mind:
+> Are there better ways to generate(or code) all possible combinations? 
+
+> Can we make the process efficient by deciding not to generate
 some sequence of combinations at all?
 
-It is very interesting to understand how the combinations are generated. We will touch upon this topic later in the post. 
+Here we will look to use recursion and backtracking as a tool to generate and evaluate these combinations one by one. 
 
 
 ####  Top Down and Bottom Up
 Solving DP problems with recursion is a top-down approach. Although DP problems also have bottom-up solutions,
 they are not as intuitive as the top-down solutions. 
 
-Our goal in this post is to use recursion call trees to understand how a particular problems is solved and determine if there 
-are common programming patters in all of these solutions.
-
-Recursion call trees will also make it evident how many of the solutions to Dynamic Programming problems 
-follow a similar pattern. 
-
-And they will also help in computing the time and space complexity of these sometimes puzzling solutions.
+Our goal in this post is to use `recursion call trees` to demystify the code and uncover common patterns in these types of problems.
+In the process, we will also get a better understanding of the time complexity for some of the solutions.
 
 I have picked some problems from "Cracking The Coding Interview" by Gayle Laakmann Mcdowell
 ####
@@ -51,18 +59,40 @@ I have picked some problems from "Cracking The Coding Interview" by Gayle Laakma
 ```A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or 3 steps at a time.
 Implement a method to count how many possible ways the child can run up the stairs. 
 ```
-Let us look at the call tree to analyse the solution:
 
-![Triple Steps](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/01_steps.png)
+To develop the solution, we will work with a 5 step staircase. 
+
+This is a `combinatorial` problem. One strategy would be to enlist all possible combinations and
+then filter out the invalid ones.
+```python
+for first_jump in (1, 2, 3):
+  for second_jump in (1, 2, 3):
+    for third_jump in (1, 2, 3):
+      for fourth_jump in (1,2, 3):    
+        ...
+        ...
+        will_this_sequence_of_jumps_lead_to_the_top(...)
+
+```
+
+If we have a 5 step staircase, then we need at least 5 nested loops so that `[jump 1 step, jump 1 step, jump 1 step, jump 1 step, jump 2 step]` is
+generated as a probable solution.
+
+Can we dynamically generate for-loops depending on the value of a function parameter? No!
+
+Also some of the for loops could have been optimised. For e.g. if the first_jump is 3, then the second_jump cannot be any number greater than 5-3.
+
+We will see how recursion allows us to generate(or simulate) dynamic number of nested for loops with dynamic sequences.
 
 We start with having to climb 5 steps.
-
 We can start by :
  - jumping 1 step ... we will land on a node with 4 steps remaining
  - or jumping 2 steps .. we will land on a node with 3 steps remaining
  - or jumping 3 steps .. we will land on a node with 2 steps remaining
  
 Then, we repeat the same set of choices for every node.
+
+![Triple Steps](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/01_steps.svg)
 
 As the process is repeated, we will end up with "negative", or "0" nodes.
 
@@ -177,7 +207,7 @@ of ways of representing $n dollars.
 
 As in the last problem, we have choices to make at each node:
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/02_change.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/02_change.svg)
 
 Starting from the top node, there are multiple paths that can be taken:
    - Use 1 of $1 and then find change for 10-1 using `[$2, $3]`
@@ -245,7 +275,7 @@ In this case the first choice requires us to decide what character to place at p
 - Place "b" at position 0 and fill out rest of the positions with `[a,c]`
 - Place "c" at position 0 and fill out rest of the positions with `[a,b]`
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/03_permutations.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/03_permutations.svg)
 
 If we place  "a" at position 0, then we have `[b, c]` to fill positions 2 and 3.
 After placing "a" at position "0", we again will have to decide what to do at position 1.
@@ -313,7 +343,7 @@ When we select the first option, we have have another choice to make.
 Where to place the queen in row 2.
 Again we have 4 choices
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/04_nqueens.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/04_nqueens.svg)
 At every node, we have to decide if the choice is viable.
 for e.g., we decided to place first queen at `row0, col0`, then at the next node we 
 have to choose position for queen at row2.
@@ -341,7 +371,7 @@ def n_queens(n, partial_solution, all_solutions):
 ```
 
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/04_nqueens.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/04_nqueens.svg)
 
 #### 5. Power Set
 ```
@@ -356,7 +386,7 @@ the Power Set of `b,c,d`. Then we build 2 sets from the Power Set of `b,c,a`
 
 The combination of these 2 sets gives us the Power Set of `a,b,c,d`
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/05_powerset.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/05_powerset.svg)
 
 
 [Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#05_powerset.py)
@@ -418,7 +448,7 @@ if we reach the destination, then we return an array within an array that will b
 nodes as the stack is unwound.
 
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/06_robot.png)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/06_robot.svg)
 
 [Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#06_robot.py)
 
