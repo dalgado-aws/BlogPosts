@@ -48,14 +48,14 @@ def steps_3(remaining):
 
 
 if __name__ == "__main__":
-    results = steps_1(11, [], [])
+    results = steps_1(5, [], [])
     for i, result in enumerate(results):
         print(i,  result)
 
-    results = steps_2(11, [])
+    results = steps_2(5, [])
     for i, result in enumerate(results):
         print(i, result)
 
-    results = steps_3(11)
+    results = steps_3(5)
     for i, result in enumerate(results):
         print(i, result)
