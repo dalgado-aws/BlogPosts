@@ -1,25 +1,26 @@
 ### Understanding Dynamic Programming with Recursion Call Trees
 
 #### What is Dynamic Programming?
-Dynamic Programming is a fascinating set of algorithm design techniques. It involves breaking down a problem
-into sub problems and then combining the `sub solutions` to compose the solution 
+Dynamic Programming is a fascinating set of algorithm design techniques. 
+It involves breaking down a problem
+into `sub problems` and then combining the `sub solutions` to compose the solution 
 to the original problem. 
 
 Each of the `sub problems` is further divided into `sub-sub-problems`. 
 This repeating nature of dynamic programming naturally lends itself to coding with recursion.
 
-Dynamic Programming can be confusing to many people. One of the reason for that is we very rarely used 
-in out day to day jobs as Programmers.
-In our daily jobs, we mostly do `Imperative Programming`, 
+Dynamic Programming can be confusing to some people. That is because very rarely use it 
+in out day to day jobs. As Programmers, we mostly do `Imperative Programming`, 
 i.e. we specify a set instructions to achieve a objective. More often than not it involves managing
 records in some kind of a data store.
 
-Dynamic Programming on the other hand can help us get a better understanding of `Combinatorial Programming`.
+Dynamic Programming can help us get a better understanding of `Combinatorial Programming`.
+
 A certain set of problems involves choosing an optimal solution from an enormous set of possible solutions.
 The straight-forward approach to these problems would be to enumerate all the possible permutations/combinations. 
 Then evaluate each of these permutations/combinations to filter the appropriate ones. 
 
-For e.g., in the 4-Queen's problem, we can generate all possible solutions with nested for loops:
+Consider the 4-Queen's problem. We can generate all possible solutions with nested for loops:
 
 ```python
 for queen_1_position_in_row_1 in range(4);
@@ -27,14 +28,13 @@ for queen_1_position_in_row_1 in range(4);
     for queen_3_position_in_row_3 in range(4);
       for queen_4_position_in_row_4 in range(4);
         is_valid(queen_1_position_in_row_1, queen_2_position_in_row_2, queen_3_position_in_row_3, queen_4_position_in_row_4)
-
 ```
 
-Two things come to mind:
-> Are there better ways to generate(or code) all possible combinations? 
+Several points can be noted here:
+> Are there better ways to generate(or code) all possible combinations for 4 Queens? 
 
-> Can we make the process efficient by deciding not to generate
-some sequence of combinations at all?
+> How would the solutions change for 5 Queens? Do we have to rewrite the code and add another nested for loop? 
+> Is it possible to "dynamically" generate n nested loops?
 
 Here we will look to use recursion and backtracking as a tool to generate and evaluate these combinations one by one. 
 
@@ -78,11 +78,12 @@ for first_jump in (1, 2, 3):
 If we have a 5 step staircase, then we need at least 5 nested loops so that `[jump 1 step, jump 1 step, jump 1 step, jump 1 step, jump 2 step]` is
 generated as a probable solution.
 
-Can we dynamically generate for-loops depending on the value of a function parameter? No!
+Will this solution handle a 6 step staircase? Do we have to recode for a 6 step staircase?
+Can we dynamically generate for-loops depending on the value of a function parameter?
 
 Also some of the for loops could have been optimised. For e.g. if the first_jump is 3, then the second_jump cannot be any number greater than 5-3.
 
-We will see how recursion allows us to generate(or simulate) dynamic number of nested for loops with dynamic sequences.
+We will see how recursion allows us to generate(or simulate) dynamic number of nested `for loops`.
 
 We start with having to climb 5 steps.
 We can start by :
@@ -134,7 +135,7 @@ the call tree that we just saw.
 There are a few observations:
  * Python solution is succinct. Note how we use the `[:]` operator to duplicate the array.
  * We are creating `partial_path` arrays some of which  are eventually discarded because they do not form a valid solution. 
- * We are using global variables in the form on IN/OUT parameters to the function. Of course, we can hide these parameters
+ * We are using global variables in the form on `IN/OUT` parameters to the function. Of course, we can hide these parameters
  from the end user by using a wrapper function. But, if possible, we would like to eliminate these "globals" altogether.
    
 
@@ -164,8 +165,8 @@ def steps_2(remaining_steps, partial_path):
 The function looks much cleaner. We do not have to pass the extra in/out parameter `all_paths`.
 
 We are still creating `partial_path` for all prospective solutions. 
-Instead, we could construct a path
-only if we are certain that it ends on on `0` node. To achieve this, we have to take action on the `way back`, while the recursion stack is being unwound.
+Instead, we could construct a path only if we are certain that it ends on on `0` node. 
+To achieve this, we have to take action on the `way back`, while the recursion stack is being unwound.
 Solution 3 wil show how this can be done.
 
 ##### Solution 3  [Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#01_steps_03.py)
@@ -189,14 +190,14 @@ def steps_3(remaining):
 ```
 
 Here, we are *not* creating  `partial_path` for every prospective solution.
-Instead, we add a `node` to the path on the `return` when the stack is being unwound.
-This substantially reduced the memory footprint of the code snippet.
+> Instead, we add a `node` to the path on the `return` when the stack is being unwound.
+> This substantially reduced the memory footprint of the code snippet.
 
 The sub-problems return a non empty array of valid paths.We then extend the non empty array with the current node.
 
 If we look at the call tree, we will notice that certain nodes have the same "remaining" value.
 We could cache the result from the first exploration and use it whenever it is used again.
-This technique is called memoization and will have improve efficiency of our implementation.
+This technique is called `memoization` and will have improve efficiency of our implementation.
 
  
 #### 2. Change
