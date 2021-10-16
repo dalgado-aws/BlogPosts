@@ -93,7 +93,7 @@ We can start by :
  
 Then, we repeat the same set of choices for every node.
 
-![Triple Steps](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/01_steps.svg)
+![Triple Steps](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/01_steps.png)
 
 As the process is repeated, we will end up with "negative", or "0" nodes.
 
@@ -109,7 +109,7 @@ However, we will try to list out the actual paths.
 
 How can we write code to collect all the valid paths? We will look at 3 code snippets:
 
-##### Solution 1 [Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#01_steps_01.py)
+##### Solution 1 [Try it on repl.it](https://replit.com/@dalgado-aws/01steps#main.py)
  ```python
 def steps_1(remaining_steps, partial_path, all_paths):
     # partial path gets added to "global" var all_paths
@@ -141,7 +141,7 @@ There are a few observations:
 
 Let us take a look at another solution:
 
-##### Solution 2 [Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#01_steps_02.py)
+##### Solution 2 [Try it on repl.it](https://replit.com/@dalgado-aws/02steps#main.py)
  ```python
 def steps_2(remaining_steps, partial_path):
     # still using partial paths, but no all_paths
@@ -169,7 +169,7 @@ Instead, we could construct a path only if we are certain that it ends on on `0`
 To achieve this, we have to take action on the `way back`, while the recursion stack is being unwound.
 Solution 3 wil show how this can be done.
 
-##### Solution 3  [Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#01_steps_03.py)
+##### Solution 3  [Try it on repl.it](https://replit.com/@dalgado-aws/03steps#main.py)
  ```python
 def steps_3(remaining):
     all_paths = []
@@ -202,30 +202,33 @@ This technique is called `memoization` and will have improve efficiency of our i
  
 #### 2. Change
 ```
-Given an infinite number of $1, $2, and $5, write code to calculate the number 
+Given an infinite number of $2, $3, and $5, write code to calculate the number 
 of ways of representing $n dollars.
 ```
 
 As in the last problem, we have choices to make at each node:
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/02_change.svg)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/02_change.png)
 
 Starting from the top node, there are multiple paths that can be taken:
-   - Use 1 of $1 and then find change for 10-1 using `[$2, $3]`
-   - Use 2 of $1 and then find change for 10-2 using `[$2, $3]`
-   - Use 3 of $1 ....
+   - Use 0 of $2 and then find change for 10-2*0 using `[$2, $3]`
+   - Use 1 of $2 and then find change for 10-2*1 using `[$2, $3]`
+   - Use 2 of $2 and then find change for 10-2*2 using `[$2, $3]`
+   - Use 3 of $2 ....
    - ...
-   - Use 1 of $2 and then find change for 10-2 using `[$3]`
-   - Use 2 of $2 and then find change for 10-4 using `[$3]`
-   - Use 3 of $2 and then find change for 10-6 using `[$3]`
+   - Use 0 of $3 and then find change for 10-3*0 using `[$3]`
+   - Use 1 of $3 and then find change for 10-3*1 using `[$3]`
+   - Use 2 of $3 and then find change for 10-3*2 using `[$3]`
+   - Use 3 of $3 and then find change for 10-3*3 using `[$3]`
    - ...
-   - Use 1 of $5 and then find change for 10-5 using `[]`
-   - Use 1 of $5 and then find change for 10-5 using `[]`
-   - Use 1 of $5 and then find change for 10-5 using `[]`
+   - Use 0 of $5 and then find change for 10-5*0 using `[]`
+   - Use 1 of $5 and then find change for 10-5*1 using `[]`
+   - Use 2 of $5 and then find change for 10-5*2 using `[]`
+   - Use 3 of $5 and then find change for 10-5*3 using `[]`
    - ...
    
 
-##### Solution [Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#02_change.py)
+##### Solution [Try it on repl.it](https://replit.com/@dalgado-aws/change#main.py)
  
 ```python
 #!/usr/bin/env python3
@@ -276,7 +279,7 @@ In this case the first choice requires us to decide what character to place at p
 - Place "b" at position 0 and fill out rest of the positions with `[a,c]`
 - Place "c" at position 0 and fill out rest of the positions with `[a,b]`
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/03_permutations.svg)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/03_permutations.png)
 
 If we place  "a" at position 0, then we have `[b, c]` to fill positions 2 and 3.
 After placing "a" at position "0", we again will have to decide what to do at position 1.
@@ -285,7 +288,7 @@ We can either place "b" or "c" at 1.
 
 The call tree gives us a good visualization of the choices.
 
-[Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#03_permutations.py)
+[Try it on repl.it](https://replit.com/@dalgado-aws/permutations#main.py)
 ```python
 #!/usr/bin/env python3
 
@@ -344,7 +347,7 @@ When we select the first option, we have have another choice to make.
 Where to place the queen in row 2.
 Again we have 4 choices
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/04_nqueens.svg)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/04_nqueens.png)
 At every node, we have to decide if the choice is viable.
 for e.g., we decided to place first queen at `row0, col0`, then at the next node we 
 have to choose position for queen at row2.
@@ -372,7 +375,6 @@ def n_queens(n, partial_solution, all_solutions):
 ```
 
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/04_nqueens.svg)
 
 #### 5. Power Set
 ```
@@ -387,10 +389,10 @@ the Power Set of `b,c,d`. Then we build 2 sets from the Power Set of `b,c,a`
 
 The combination of these 2 sets gives us the Power Set of `a,b,c,d`
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/05_powerset.svg)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/05_powerset.png)
 
 
-[Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#05_powerset.py)
+[Try it on repl.it](https://replit.com/@dalgado-aws/powerset#main.py)
 
 Looking at the code will make it obvious
  ```python
@@ -449,9 +451,9 @@ if we reach the destination, then we return an array within an array that will b
 nodes as the stack is unwound.
 
 
-![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/06_robot.svg)
+![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/06_robot.png)
 
-[Try it on repl.it](https://replit.com/@dalgado-aws/dynamicprogrammingsteps#06_robot.py)
+[Try it on repl.it](https://replit.com/@dalgado-aws/robot#main.py) 
 
 ```python
 #!/usr/bin/env python3
