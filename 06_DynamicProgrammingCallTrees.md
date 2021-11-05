@@ -9,13 +9,14 @@ to the original problem.
 Each of the `sub problems` is further divided into `sub-sub-problems`. 
 This repeating nature of dynamic programming naturally lends itself to coding with recursion.
 
-Dynamic Programming can be confusing to some people. That is because very rarely use it 
+Dynamic Programming can be confusing to some people. That is because we very rarely use it 
 in out day to day jobs. As Programmers, we mostly do `Imperative Programming`, 
-i.e. we specify a set instructions to achieve a objective. More often than not it involves managing
-records in some kind of a data store.
+i.e. we specify a set instructions to achieve a objective. More often than not this involves managing
+records in some kind of a data store(RDBMS, File System, NoSQL etc).
 
 Dynamic Programming can help us get a better understanding of `Combinatorial Programming`.
 
+#### Combinatorial Programming
 A certain set of problems involves choosing an optimal solution from an enormous set of possible solutions.
 The straight-forward approach to these problems would be to enumerate all the possible permutations/combinations. 
 Then evaluate each of these permutations/combinations to filter the appropriate ones. 
@@ -30,14 +31,11 @@ for queen_1_position_in_row_1 in range(4);
         is_valid(queen_1_position_in_row_1, queen_2_position_in_row_2, queen_3_position_in_row_3, queen_4_position_in_row_4)
 ```
 
-Several points can be noted here:
-> Are there better ways to generate(or code) all possible combinations for 4 Queens? 
+Most solutions to Dynamic Programming problems generate and evaluate numerous probable solutions. 
+Although the above snippet is easiest to comprehend, it is not the most efficient.  
+We can use Recursion to code more elegant and efficient solutions that do not involve nested for-loops. 
 
-> How would the solutions change for 5 Queens? Do we have to rewrite the code and add another nested for loop? 
-> Is it possible to "dynamically" generate n nested loops?
-
-Here we will look to use recursion and backtracking as a tool to generate and evaluate these combinations one by one. 
-
+We will see how "Recursion" can be used to emulate the nested for-loops that we used in the above snippet.
 
 ####  Top Down and Bottom Up
 Solving DP problems with recursion is a top-down approach. Although DP problems also have bottom-up solutions,
@@ -69,24 +67,28 @@ for first_jump in (1, 2, 3):
   for second_jump in (1, 2, 3):
     for third_jump in (1, 2, 3):
       for fourth_jump in (1,2, 3):    
-        ...
-        ...
-        will_this_sequence_of_jumps_lead_to_the_top(...)
+        for fifth_jump in (1,2, 3):    
+          ...
+          ...
+          will_this_sequence_of_jumps_lead_to_the_top(...)
 
 ```
 
 If we have a 5 step staircase, then we need at least 5 nested loops so that `[jump 1 step, jump 1 step, jump 1 step, jump 1 step, jump 2 step]` is
 generated as a probable solution.
 
-Will this solution handle a 6 step staircase? Do we have to recode for a 6 step staircase?
-Can we dynamically generate for-loops depending on the value of a function parameter?
+This solution will not be able to handle a 6 step staircase. 
+We will have to recode for a 6 step staircase with 6 nested for-loops.
 
-Also some of the for loops could have been optimised. For e.g. if the first_jump is 3, then the second_jump cannot be any number greater than 5-3.
+Also some of the for loops could have been optimised. 
+For e.g. if the first_jump is 3, then the second_jump cannot be any number greater than 5-3.
 
-We will see how recursion allows us to generate(or simulate) dynamic number of nested `for loops`.
+Let us see how recursion allows us to generate(or simulate) dynamic number of nested `for loops`.
 
-We start with having to climb 5 steps.
-We can start by :
+#### The Recursive Solution
+
+We are required to climb 5 steps(ref. the tree below).
+We start by :
  - jumping 1 step ... we will land on a node with 4 steps remaining
  - or jumping 2 steps .. we will land on a node with 3 steps remaining
  - or jumping 3 steps .. we will land on a node with 2 steps remaining
@@ -97,13 +99,28 @@ Then, we repeat the same set of choices for every node.
 
 As the process is repeated, we will end up with "negative", or "0" nodes.
 
-Reaching a "0" nodes means we have reached the top of the staircase(There are no more steps to cover).
+Reaching a "0" node means we have reached the top of the staircase(There are no more steps to cover).
 All the paths from the root to  "0" node represent a valid path to take to reach the top of the staircase.
 
 Let's evaluate how we could end up with a "negative" node.
 Say, for example, we start by jumping 3 steps, and then jump another 3 steps. The remaining steps will be 5-3-3=-1
 If the "remaining" value of a leaf is negative, then that path is not a valid solution.
 
+##### The Hidden for-loops
+We had multiple nested for-loops in the original simplistic solution.
+They seem to have disappeared from the recursion based solution!
+
+On closer observation, we can see that there are 3 recursive invocations in the method.
+That is a HIDDEN for-loop with i=0 to i=3.
+
+And what about nesting? The original simplistic solution had 5 levels of nested for-loops.
+
+In the recursive method, the level of nesting is controlled by the recursive code.
+The body of the method usually has an decision to make:
+   - Either make another set of recursive calls thus emulating a DEEPER NESTED for-loop
+   - Or return without invoking itself
+
+##### Collecting All the Solutions 
 The problem statement asks to count the number of ways/paths that exists.
 However, we will try to list out the actual paths.
 
@@ -134,7 +151,7 @@ the call tree that we just saw.
 
 There are a few observations:
  * Python solution is succinct. Note how we use the `[:]` operator to duplicate the array.
- * We are creating `partial_path` arrays some of which  are eventually discarded because they do not form a valid solution. 
+ * We are creating `partial_path` arrays some of which  are eventually discarded(not added to `all_paths`) because they do not form a valid solution. 
  * We are using global variables in the form on `IN/OUT` parameters to the function. Of course, we can hide these parameters
  from the end user by using a wrapper function. But, if possible, we would like to eliminate these "globals" altogether.
    
@@ -171,6 +188,8 @@ Solution 3 wil show how this can be done.
 
 ##### Solution 3  [Try it on repl.it](https://replit.com/@dalgado-aws/03steps#main.py)
  ```python
+#!/usr/bin/env python3
+
 def steps_3(remaining):
     all_paths = []
     if not remaining:
@@ -196,7 +215,9 @@ Here, we are *not* creating  `partial_path` for every prospective solution.
 The sub-problems return a non empty array of valid paths.We then extend the non empty array with the current node.
 
 If we look at the call tree, we will notice that certain nodes have the same "remaining" value.
-We could cache the result from the first exploration and use it whenever it is used again.
+
+##### Memoization 
+We could cache the result from the first exploration of f(a) and use it whenever f has to be invoked again.
 This technique is called `memoization` and will have improve efficiency of our implementation.
 
  
@@ -211,15 +232,15 @@ As in the last problem, we have choices to make at each node:
 ![Change](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/dynamic_programming/02_change.png)
 
 Starting from the top node, there are multiple paths that can be taken:
-   - Use 0 of $2 and then find change for 10-2*0 using `[$2, $3]`
-   - Use 1 of $2 and then find change for 10-2*1 using `[$2, $3]`
-   - Use 2 of $2 and then find change for 10-2*2 using `[$2, $3]`
+   - Use 0 of $2 and then find change for 10-2*0 using `[$3, $5]`
+   - Use 1 of $2 and then find change for 10-2*1 using `[$3, $5]`
+   - Use 2 of $2 and then find change for 10-2*2 using `[$3, $5]`
    - Use 3 of $2 ....
    - ...
-   - Use 0 of $3 and then find change for 10-3*0 using `[$3]`
-   - Use 1 of $3 and then find change for 10-3*1 using `[$3]`
-   - Use 2 of $3 and then find change for 10-3*2 using `[$3]`
-   - Use 3 of $3 and then find change for 10-3*3 using `[$3]`
+   - Use 0 of $3 and then find change for 10-3*0 using `[$5]`
+   - Use 1 of $3 and then find change for 10-3*1 using `[$5]`
+   - Use 2 of $3 and then find change for 10-3*2 using `[$5]`
+   - Use 3 of $3 and then find change for 10-3*3 using `[$5]`
    - ...
    - Use 0 of $5 and then find change for 10-5*0 using `[]`
    - Use 1 of $5 and then find change for 10-5*1 using `[]`
@@ -232,7 +253,6 @@ Starting from the top node, there are multiple paths that can be taken:
  
 ```python
 #!/usr/bin/env python3
-
 
 def change(amount, options):
     if not amount:  # zero amount left. We have a valid solution path
@@ -330,7 +350,7 @@ queen at `column i in row 0`, `column j in row 1` , `column k at row 2`, and `co
 
 
 The total possible Queen combinations is n**n. 
-A Queen has n possible positions in row 1 (`row1,col1`, `row1`, `col1`, and so on )
+A Queen has n possible positions in row 1 ( (`row1, col1`), (`row1, col2`), and so on.
 Since we have N queens and N rows, we end up with n**n possible positions.
 
 We have to consider each of these positions and weed out the illegal ones.
@@ -354,8 +374,7 @@ have to choose position for queen at row2.
 
 We can choose `row2, col1`. But this is not valid since we will end up with 2 queens in same column.
 
-let us see how the pseudo code would look 
-
+let us see how the pseudo code would look:
 
 ```python
 #!/usr/bin/env python3
@@ -374,15 +393,14 @@ def n_queens(n, partial_solution, all_solutions):
                 n_queens(n, next_partial, all_solutions)
 ```
 
-
-
 #### 5. Power Set
 ```
 Write a method to compute the Power Set of Set A. Power Set is the set of all Subsets of a set.
 ```
 
-The choices we have to make in the Power Set algorithm are pretty simple. To compute the Power Set of `a,b,c,d`, we first compute
-the Power Set of `b,c,d`. Then we build 2 sets from the Power Set of `b,c,a`
+The choices we have to make in the Power Set algorithm are pretty simple. 
+To compute the Power Set of `a,b,c,d`, we first compute the Power Set of `b,c,d`. 
+Then we build 2 sets from the Power Set of `b,c,a`
 
 - First we create a new set by appending  `a` to all elements of the result
 - Then we create another set by *Not* appending `a` to all elements of the result
@@ -397,7 +415,6 @@ The combination of these 2 sets gives us the Power Set of `a,b,c,d`
 Looking at the code will make it obvious
  ```python
 #!/usr/bin/env python3
-
 
 def power_set(set_elements):
     if not set_elements:
