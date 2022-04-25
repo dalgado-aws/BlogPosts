@@ -103,7 +103,7 @@ Then we are forced to use `null` checks in the function body.
 With `Optional`, if we do not know the value of a parameter, we us `Optional.empty`.  And we get to skip all `null` checks
 in function body.
 If one of the parameters is `Optionsl.empty`, the chain of `flatMaps` will also return `Optional.empty` without 
-we having to put in any null checks or `if` conditions.
+us having to put in any null checks or `if` conditions.
 
 The return value of the function invocation is an `Optional<Double>`. 
 This can either be passed to another function or the actual `Double` value can be extracted 
@@ -146,9 +146,11 @@ class InterestRates {
 We have eliminated `null` checking, facilitated function chaining and also and made our code more readable.
 
 There are some drawbacks to consider:
-    1.  Every `Optional<>` is a additional object that adds to the memory cost 
-    2.  We can only return success `Optional<Value>` or failure `Optional.empty`. 
-    It would have been great if we could return additional info for the failure(see scala.util.Either/Left/Right)
+
+    - 1.  Every `Optional<>` is a additional object that adds to the memory cost 
+    - 2.  We can only return success `Optional<Value>` or failure `Optional.empty`. 
+
+It would have been great if we could return additional info for the failure(see scala.util.Either/Left/Right)
 
 
 ### 2. Scala's case classes:Quick Data(DTO) Classes
