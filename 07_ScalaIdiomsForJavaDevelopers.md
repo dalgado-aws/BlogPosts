@@ -1,8 +1,8 @@
-### 5 Scala Idioms for Java Developers
+## 5 Scala Idioms for Java Developers
 
 These are some Scala idioms that a Java Programmer can add to their toolbox
 
-##### 1. Scala's Option<> class: Programming without null
+### 1. Scala's Option<> class: Programming without null
 Consider the following Problem Statement: `Calculate the Future Value(FV) 
 using interest rate(r), present value(PV), and time in years(n)`
 
@@ -151,7 +151,7 @@ There are some drawbacks to consider:
     It would have been great if we could return additional info for the failure(see scala.util.Either/Left/Right)
 
 
-##### 2. Scala's case classes:Quick Data(DTO) Classes
+### 2. Scala's case classes:Quick Data(DTO) Classes
 
 In Java, when we define POJOs, we are forced to define a large amount of boilerplate code.
  This includes:
@@ -264,7 +264,7 @@ class V {
 }
 ```
 
-##### 3. Scala's var and val: Less Boilerplate code with Type Inference 
+### 3. Scala's var and val: Less Boilerplate code with Type Inference 
 
 In Scala, we do not have to define the `type` of a variable. Scala is able to infer the type. 
 ```scala
@@ -299,7 +299,7 @@ Lombok also adds the "val" `"keyword"` to Java. This makes variables immutable.
 Lombok uses Annotation Processing to make them available in Java.
 Note that `var` has been introduced as a keywork in Java 10.
 
-#### 4. Scala's predefined functional Interfaces: Refactor and Reuse Lambdas 
+### 4. Scala's predefined functional Interfaces: Refactor and Reuse Lambdas 
 
 While programming with streams, we frequently use `.map` and `.filter` to modify collection streams.
 
@@ -330,7 +330,7 @@ In Java, we have predefined Functional Interfaces defined in java.util.function
 | Function  | A function that takes in data and produces data     |
 | Predicate | A function that takes in data and returns a boolean |
 
-#### 5. Scala's collection classes: Quickly creating collections
+### 5. Scala's collection classes: Quickly creating collections
 
 In Scala, we can quickly create a List with  `val newList = List(1, 2, 3)`
 The Java equivalent would be 
