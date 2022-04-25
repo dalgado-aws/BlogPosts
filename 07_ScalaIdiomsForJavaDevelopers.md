@@ -100,9 +100,9 @@ So what is the problem that is being solved with `Optional`?
 Without `Optional` , if we do not know the value of a parameter, we use `null`. 
 Then we are forced to use `null` checks in the function body.
 
-With `Optional`, if we do not know the value of a parameter, we us `Optional.empty`.  And we get to skip all `null` checks
+With `Optional`, if we do not know the value of a parameter, we use `Optional.empty`.  And we get to skip all `null` checks
 in function body.
-If one of the parameters is `Optionsl.empty`, the chain of `flatMaps` will also return `Optional.empty` without 
+If one of the parameters is `Optional.empty`, the chain of `flatMaps` will also return `Optional.empty` without 
 us having to put in any null checks or `if` conditions.
 
 The return value of the function invocation is an `Optional<Double>`. 
