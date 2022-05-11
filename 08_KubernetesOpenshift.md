@@ -2,6 +2,7 @@
 
 #### 1. Create RedHat Developer Sandbox 
   - Register [https://developers.redhat.com/developer-sandbox](https://developers.redhat.com/developer-sandbox)
+  - ![Register](https://raw.githubusercontent.com/dalgado-aws/BlogPosts/master/img/openshift/01_get_started_with_redhat_developer_sandbox.png)
   - Login  [https://developers.redhat.com/developer-sandbox/get-started](https://developers.redhat.com/developer-sandbox/get-started)
 
 #### 2. Install "oc" command line utility (RedHat's version of kubectl)
