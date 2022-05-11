@@ -6,3 +6,4 @@
 - [IntelliJ Tips](05_JetBrainsShortcuts.md)
 - [Understanding Dynamic Programming with Recursion Call Trees](06_DynamicProgrammingCallTrees.md)
 - [Scala Idioms for Java Programmers](07_ScalaIdiomsForJavaDevelopers.md)
+- [Deploying Java Applications to Kubernetes(RedHat Openshift)](08_KubernetesOpenshift.md)
