@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      label {
+        display: block;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>index</td>
+        <td>select</td>
+        <td>email</td>
+        <td>count</td>
+        <td>view</td>
+      </tr>
+    <form id="myForm" onsubmit="submitForm(event)">
+      <? for (var i = 0; i < emails.length; i++) { ?>
+        <tr>
+          <td><?= i ?></td>
+          <td><input type="checkbox" name="selectedEmails[]" value="<?= emails[i]['email'] ?>"></td>
+          <td><?= emails[i]['email'] ?></td>
+          <td><?= emails[i]['count'] ?></td>
+          <td><a href='<?= emails[i]['searchLink'] ?>' target="_blank">view</a></td>
+        </tr>
+      <? } ?>
+      </table>
+
+      <input type="submit" value="Submit">
+    </form>
+     <script>
+      function submitForm(event) {
+        event.preventDefault();
+
+        var form = document.getElementById('myForm');
+        var formData = new FormData(form);
+
+        var formObject = {};
+        formData.getAll('selectedEmails[]').forEach(function(value, index) {
+          formObject['selectedEmails[' + index + ']'] = value;
+        });
+
+        google.script.run.processForm(formObject);
+
+        document.getElementById('myForm').reset();
+        google.script.host.close();
+      }
+    </script>
+  </body>
+</html>
