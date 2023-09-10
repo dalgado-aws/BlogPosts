@@ -136,7 +136,7 @@ We need some understanding of the working of a webapp to glue the whole thing to
 We will have to copy the javascript code to code.js
 We also need to create a new file to contain the template 
 
-All the glue code and ChatGPT responses that I copy-pasted are available here: https://github.com/dalgado-aws/BlogPosts/blob/master/google_apps_script/
+All the glue code and ChatGPT responses that I copy-pasted are available here: https://github.com/dalgado-aws/BlogPosts/tree/master/google_apps_script
 
 ```It is important to note that every invocation of ChatGPT could render a completely different code/response.```
 

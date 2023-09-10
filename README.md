@@ -1,4 +1,4 @@
-### Blog Posts for [lincolndalgado.com](lincolndalgado.com)
+### Blog Posts for [lincolndalgado.com](https://lincolndalgado.com)
 
 - [Inheritance and Generics in Java and Scala](01_JavaScalaInheritanceAndGenerics.md)
 - [Type Classes, Monoids, and Functors with Scala's Cats Library](02_TypeClassesMondoidsAndFunctorsWithScalaCats.md)
@@ -7,3 +7,4 @@
 - [Understanding Dynamic Programming with Recursion Call Trees](06_DynamicProgrammingCallTrees.md)
 - [Scala Idioms for Java Programmers](07_ScalaIdiomsForJavaDevelopers.md)
 - [Deploying Java Applications to Kubernetes(RedHat Openshift)](08_KubernetesOpenshift.md)
+- [ChatGPT with Google Apps Script](09_GoogleAppsScriptAndChatGPT.md)
