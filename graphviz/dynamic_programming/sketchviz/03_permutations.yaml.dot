@@ -1,0 +1,32 @@
+digraph  {
+	fontname="Fira Mono";fontsize="14";nodesep="0.4";pad="0.5";ranksep="0.25 equally";
+
+	node[fillcolor="#fafafa",fontname="Fira Mono",fontsize="10",margin="0.3,0.1",penwidth="2.0",shape="box",style="rounded,filled"]
+
+
+	n1[label=<<b>permutations</b>>,shape="plaintext",style=""];
+	n2[label="permutations(abc)"];
+	n3[label="a Place 'a' at positon 0"];
+	n4[label="ab Place 'b' at positon 1"];
+	n5[label="abc Place 'c' at positon 2"];
+	n6[label="ac Place 'c' at positon 1"];
+	n7[label="acb Place 'b' at positon 2"];
+	n8[label="b Place 'b' at positon 0"];
+	n9[label="..."];
+	n10[label="..."];
+	n11[label="c Place 'c' at positon 0"];
+	n12[label="..."];
+	n13[label="..."];
+	n11->n12[arrowhead="none",penwidth="2.0"];
+	n11->n13[arrowhead="none",penwidth="2.0"];
+	n8->n9[arrowhead="none",penwidth="2.0"];
+	n8->n10[arrowhead="none",penwidth="2.0"];
+	n6->n7[arrowhead="none",penwidth="2.0"];
+	n4->n5[arrowhead="none",penwidth="2.0"];
+	n3->n4[arrowhead="none",penwidth="2.0"];
+	n3->n6[arrowhead="none",penwidth="2.0"];
+	n2->n3[arrowhead="none",penwidth="2.0"];
+	n2->n8[arrowhead="none",penwidth="2.0"];
+	n2->n11[arrowhead="none",penwidth="2.0"];
+	n1->n2[arrowhead="none",penwidth="2.0"];
+}

@@ -1,0 +1,26 @@
+digraph  {
+	fontname="Fira Mono";fontsize="14";nodesep="0.4";pad="0.5";ranksep="0.25 equally";
+
+	node[fillcolor="#fafafa",fontname="Fira Mono",fontsize="10",margin="0.3,0.1",penwidth="2.0",shape="box",style="rounded,filled"]
+
+
+	n1[label=<<b>powerset()</b>>,shape="plaintext",style=""];
+	n2[label="powerset(abc)"];
+	n3[label="(a)"];
+	n4[label="(ab)"];
+	n5[label="(abc)"];
+	n6[label="(ab)"];
+	n7[label="(a)"];
+	n8[label="()"];
+	n9[label="(b)"];
+	n10[label="()"];
+	n8->n9[arrowhead="none",penwidth="2.0"];
+	n8->n10[arrowhead="none",penwidth="2.0"];
+	n4->n5[arrowhead="none",penwidth="2.0"];
+	n4->n6[arrowhead="none",penwidth="2.0"];
+	n3->n4[arrowhead="none",penwidth="2.0"];
+	n3->n7[arrowhead="none",penwidth="2.0"];
+	n2->n3[arrowhead="none",penwidth="2.0"];
+	n2->n8[arrowhead="none",penwidth="2.0"];
+	n1->n2[arrowhead="none",penwidth="2.0"];
+}

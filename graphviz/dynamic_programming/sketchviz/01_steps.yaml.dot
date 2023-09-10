@@ -1,0 +1,40 @@
+digraph  {
+	fontname="Fira Mono";fontsize="14";nodesep="0.4";pad="0.5";ranksep="0.25 equally";
+
+	node[fillcolor="#fafafa",fontname="Fira Mono",fontsize="10",margin="0.3,0.1",penwidth="2.0",shape="box",style="rounded,filled"]
+
+
+	n1[label=<<b>steps(steps_remaining_to_climb)</b>>,shape="plaintext",style=""];
+	n2[label="steps(5) ... 5 steps to climb"];
+	n3[label="steps(5-1) ... 4 steps to climb"];
+	n4[label="steps(4-1) ... 3 steps to climb"];
+	n5[label="..."];
+	n6[label="steps(4-2) ... 2 steps to climb"];
+	n7[label="..."];
+	n8[label="steps(4-3) ... 1 steps to climb"];
+	n9[label="..."];
+	n10[label="steps(5-2) ... 3 steps to climb"];
+	n11[label="..."];
+	n12[label="..."];
+	n13[label="..."];
+	n14[label="steps(5-3) ... 2 steps to climb"];
+	n15[label="..."];
+	n16[label="..."];
+	n17[label="..."];
+	n14->n15[arrowhead="none",penwidth="2.0"];
+	n14->n16[arrowhead="none",penwidth="2.0"];
+	n14->n17[arrowhead="none",penwidth="2.0"];
+	n10->n11[arrowhead="none",penwidth="2.0"];
+	n10->n12[arrowhead="none",penwidth="2.0"];
+	n10->n13[arrowhead="none",penwidth="2.0"];
+	n8->n9[arrowhead="none",penwidth="2.0"];
+	n6->n7[arrowhead="none",penwidth="2.0"];
+	n4->n5[arrowhead="none",penwidth="2.0"];
+	n3->n4[arrowhead="none",penwidth="2.0"];
+	n3->n6[arrowhead="none",penwidth="2.0"];
+	n3->n8[arrowhead="none",penwidth="2.0"];
+	n2->n3[arrowhead="none",penwidth="2.0"];
+	n2->n10[arrowhead="none",penwidth="2.0"];
+	n2->n14[arrowhead="none",penwidth="2.0"];
+	n1->n2[arrowhead="none",penwidth="2.0"];
+}

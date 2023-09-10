@@ -1,0 +1,46 @@
+digraph  {
+	fontname="Fira Mono";fontsize="14";nodesep="0.4";pad="0.5";ranksep="0.25 equally";
+
+	node[fillcolor="#fafafa",fontname="Fira Mono",fontsize="10",margin="0.3,0.1",penwidth="2.0",shape="box",style="rounded,filled"]
+
+
+	n1[label=<<b>nqueens</b>>,shape="plaintext",style=""];
+	n2[label="nqueens(4)"];
+	n3[label="Place Row 1 Queen in Column 1"];
+	n4[label="..."];
+	n5[label="Place Row 1 Queen in Column 2"];
+	n6[label="Place Row 2 Queen in Column 1"];
+	n7[label="..."];
+	n8[label="..."];
+	n9[label="..."];
+	n10[label="..."];
+	n11[label="Place Row 2 Queen in Column 2"];
+	n12[label="..."];
+	n13[label="Place Row 2 Queen in Column 3"];
+	n14[label="..."];
+	n15[label="Place Row 2 Queen in Column 4"];
+	n16[label="..."];
+	n17[label="Place Row 1 Queen in Column 3"];
+	n18[label="..."];
+	n19[label="Place Row 1 Queen in Column 4"];
+	n20[label="..."];
+	n19->n20[arrowhead="none",penwidth="2.0"];
+	n17->n18[arrowhead="none",penwidth="2.0"];
+	n15->n16[arrowhead="none",penwidth="2.0"];
+	n13->n14[arrowhead="none",penwidth="2.0"];
+	n11->n12[arrowhead="none",penwidth="2.0"];
+	n6->n7[arrowhead="none",penwidth="2.0"];
+	n6->n8[arrowhead="none",penwidth="2.0"];
+	n6->n9[arrowhead="none",penwidth="2.0"];
+	n6->n10[arrowhead="none",penwidth="2.0"];
+	n5->n6[arrowhead="none",penwidth="2.0"];
+	n5->n11[arrowhead="none",penwidth="2.0"];
+	n5->n13[arrowhead="none",penwidth="2.0"];
+	n5->n15[arrowhead="none",penwidth="2.0"];
+	n3->n4[arrowhead="none",penwidth="2.0"];
+	n2->n3[arrowhead="none",penwidth="2.0"];
+	n2->n5[arrowhead="none",penwidth="2.0"];
+	n2->n17[arrowhead="none",penwidth="2.0"];
+	n2->n19[arrowhead="none",penwidth="2.0"];
+	n1->n2[arrowhead="none",penwidth="2.0"];
+}

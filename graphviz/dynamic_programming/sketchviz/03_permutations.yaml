@@ -1,0 +1,13 @@
+Permutations:
+  start:
+    - a Place 'a' at positon 0:
+      - ab Place 'b' at positon 1:
+        - abc Place 'c' at positon 2
+      - ac Place 'c' at positon 1:
+          - abc Place 'b' at positon 2
+    - b Place 'b' at positon 0:
+        - ...
+        - ...
+    - c Place 'c' at positon 0:
+      - ...
+      - ...

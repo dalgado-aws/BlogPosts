@@ -52,12 +52,12 @@ that allows us to set up rules to automatically delete some emails.
 At first, we can build a simple screen tht shows us an aggregated view of the gmail inbox that looks like below.
 We will see how a few prompts to ChatGPT can get our App up and running in no time.
 
-| sender's email             | count of emails sent | click on link to view all these emails   |
-|----------------------------|----------------------|------------------------------------------|
-| john@gmail.com             | 26 emails from john  | link to all John's email                 |
-| notifications@facebook.com | 15 emails from john  | link to all facebook notification emails |
-| orders@amazon.com          | 7 emails from john   | link to all amazon orders email          |
-| shipping@books.com         | 3 emails from john   | link to all books.com email              |
+| sender's email             | count of emails sent    | click on link to view all these emails   |
+|----------------------------|-------------------------|------------------------------------------|
+| john@gmail.com             | 26 emails from john     | link to all John's email                 |
+| notifications@facebook.com | 15 emails from facebook | link to all facebook notification emails |
+| orders@amazon.com          | 7 emails from amazon    | link to all amazon orders email          |
+| shipping@books.com         | 3 emails from books.com | link to all books.com email              |
 
 
 ### Getting Started: The Scaffolding To Deploy A Simple Web App
